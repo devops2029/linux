@@ -26,7 +26,16 @@ Use the mouse
 To enable it, first enter command mode by typing Ctrl+B :, then toggle the mouse on (or off) with the command set -g mouse.
 
 new session
-tmux new -s "database upgrade"
+$ tmux new -s "database upgrade"
 
 Attach
-tmux attach -t "database upgrade"
+$ tmux attach -t "database upgrade"
+
+$ dmesg -w
+
+press Ctrl+B, and then S to see a list of tmux sessions.
+
+$ tmux ls
+
+
+
