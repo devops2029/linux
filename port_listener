@@ -1,0 +1,26 @@
+Target Server (Linux)
+---------------------
+$ ls | nc -l -p 9001 -4 >  /dev/null  2>&1 &
+$ jobs
+$ netstat -ptlun
+
+Source Server(Linux)
+-------------------
+ncat -z -v target-server-ip  9001
+
+Kill 
+----
+jobs -l
+kill -9 xxxxx
+
+
+Create a TCP/UDP port listener using PowerShell
+-----------------------------------------------
+a) To open/close a Tcp port listner:
+$ Listener = [System.Net.Sockets.TcpListener] 9001
+$ Listener.Start()
+# wait, try connect from another PC etc.
+$ Listener.Stop()
+
+b) to test port:
+$ Test-NetConnection <IP/NAME > -port 9001
