@@ -1,0 +1,34 @@
+---
+- name: display installed package
+  hosts: host2
+  tasks:
+    - name: gather installed package
+      package_facts:
+        manager: auto
+
+- name: Display list of package
+  debug:
+    var: ansible_facts.packages
+
+- name: display version kernel installed
+  debug:
+    msg: "System has updated kernel version {{ ansible_facts.packages['kernel'][0].version }}"
+  when: ansible_facts.packages['kernel'][0].version == "4.18.0"
+  
+- name: gather available kernel version in repo
+  yum:
+    list: kernel
+  register: kernel_ver
+
+- name: available kernel
+  debug: var=kernel_ver['results'[1].yumstate
+
+- name: check kernel is updated or not
+  debug:
+    msg: system is updated
+  when: "ansible_facts.packages['kernel'][0].version == kernel_ver['results'][1].version"
+
+  
+
+  
+        
