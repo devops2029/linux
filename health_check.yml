@@ -1,0 +1,13 @@
+---
+- name: Health Check
+  hosts: host2
+  tasks:
+    - name: Do health checj of server
+      script:
+        health-script.sh > /tmp/uname -a | awk '{print $2}'.txt
+    - name: Fetch report from servers
+      fetch:
+        src: /tmp/{{ ansible_facts['fqdn'] }}.txt
+        dest: /tmp/
+        flat: yes
+        
