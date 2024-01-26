@@ -20,6 +20,8 @@
     list: kernel
   register: kernel_ver
 
+- debug: var=kernel_ver
+
 - name: available kernel
   debug: var=kernel_ver['results'[1].yumstate
 
