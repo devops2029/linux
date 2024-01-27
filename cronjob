@@ -1,2 +1,7 @@
 - cron:
-    name: "by ansible
+    name: "by ansible"
+    user: "root"
+    minute: 45
+    hour: 11
+    job: "df -h > /tmp/file.txt"
+
