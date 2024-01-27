@@ -1,0 +1,84 @@
+Post-installation procedures
+----------------------------
+yum update
+systemctl start firewalld#
+systemctl enable firewalld
+systemctl disable cups
+systemctl list-units | grep service
+fips-mode-setup --check
+update-crypto-policies --show
+update-crypto-policies --set FUTURE
+update-crypto-policies --set LEGACY
+update-crypto-policies --show
+
+# cd /etc/crypto-policies/policies/modules/
+# touch MYCRYPTO-1.pmod
+# touch SCOPES-AND-WILDCARDS.pmod
+# vi MYCRYPTO-1.pmod
+min_rsa_size = 3072
+hash = SHA2-384 SHA2-512 SHA3-384 SHA3-512
+
+
+# vi SCOPES-AND-WILDCARDS.pmod
+# Disable the AES-128 cipher, all modes
+cipher = -AES-128-*
+
+# Disable CHACHA20-POLY1305 for the TLS protocol (OpenSSL, GnuTLS, NSS, and OpenJDK)
+cipher@TLS = -CHACHA20-POLY1305
+
+# Allow using the FFDHE-1024 group with the SSH protocol (libssh and OpenSSH)
+group@SSH = FFDHE-1024+
+
+# Disable all CBC mode ciphers for the SSH protocol (libssh and OpenSSH)
+cipher@SSH = -*-CBC
+
+# Allow the AES-256-CBC cipher in applications using libssh
+cipher@libssh = AES-256-CBC+
+
+
+# update-crypto-policies --set DEFAULT:MYCRYPTO-1:SCOPES-AND-WILDCARDS
+reboot
+cat /etc/crypto-policies/state/CURRENT.pol | grep rsa_size
+
+cd /etc/crypto-policies/policies/
+touch MYPOLICY.pol
+cp /usr/share/crypto-policies/policies/DEFAULT.pol /etc/crypto-policies/policies/MYPOLICY.pol
+vi /etc/crypto-policies/policies/MYPOLICY.pol
+update-crypto-policies --set MYPOLICY
+reboot
+
+# vi playbook.yml
+---
+- hosts: all
+  tasks:
+  - name: Configure crypto policies
+    include_role:
+      name: rhel-system-roles.crypto_policies
+    vars:
+      - crypto_policies_policy: FUTURE
+      - crypto_policies_reboot_ok: true
+
+# ansible-playbook --syntax-check playbook.yml
+# ansible-playbook -i inventory_file playbook.yml
+
+      
+# vi verify_playbook.yml
+- hosts: all
+  tasks:
+ - name: Verify active crypto policy
+   include_role:
+     name: rhel-system-roles.crypto_policies
+
+ - debug:
+     var: crypto_policies_active
+
+
+
+
+
+
+
+
+
+
+
