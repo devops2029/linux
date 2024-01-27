@@ -1,0 +1,6 @@
+---
+- name: Reboot after patching
+  reboot:
+    reboot_timeout: 180
+- name: force a quick reboot
+  reboot: 
