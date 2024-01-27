@@ -1,6 +1,6 @@
 ---
 - name: prompt for user creation
-  hosts: managed
+  hosts: "{{ myhost }}"
   vars_prompt:
     - name: username
       prompt: "Enter username "
