@@ -1,0 +1,16 @@
+---
+- name: prompt for user creation
+  hosts: managed
+  vars_prompt:
+    - name: username
+      prompt: "Enter username "
+      private: no
+    - name: password
+      prompt: "Enter Password "
+      private: yes
+  tasks:
+    - name: create user
+      user:
+        name: "{{ username }}"
+        password: "{{ password | password_hash('sha512') }}"
+        
