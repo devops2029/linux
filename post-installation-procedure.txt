@@ -73,6 +73,7 @@ reboot
      var: crypto_policies_active
 
 
+#ansible-playbook -i localhost, -c local /usr/share/scap-security-guide/ansible/rhel8-playbook-hipaa.yml
 
 
 
