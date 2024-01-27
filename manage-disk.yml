@@ -1,0 +1,35 @@
+---
+- name: manage disk
+  hosts: server1
+  tasks:
+    - name: create partition
+      parted:
+        device: /dev/sda
+        number: 1
+        state: present
+        part_start: 1GiB
+    - name: create pv and vg
+      lvg:
+        vg: vol01
+        pvs: /dev/sda1
+
+    - name: create lv
+      lvol:
+        vg: vol01
+        lv: lv1
+        size: 2g
+        state: present
+
+    - name: format lv
+      filesystem:
+        fstype: xfs
+        dev: /dev/vol01/lv1
+
+    - name: mount the logical volume
+      mount:
+        path: /data/
+        src: /dev/vol01/lv1
+        fstype: xfs
+        state: mounted
+
+        
