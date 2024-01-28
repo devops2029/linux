@@ -14,3 +14,21 @@
       service:
         name:sshd
         state: reloaded
+
+
+
+  1 ---
+  2 - name: disable remote login of root
+  3   hosts: "{{ myhost }}"
+  4   tasks:
+  5     - name: disable root remote login
+  6       lineinfile:
+  7         path: /etc/ssh/sshd_config
+  8         regexp: "^PermitRootLogin"
+  9         state: present
+ 10         line: "PermitRootLogin no"
+ 11
+ 12     - name: restart sshd
+ 13       service:
+ 14         name: sshd
+ 15         state: reloaded
