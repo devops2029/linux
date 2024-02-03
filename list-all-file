@@ -1,1 +1,5 @@
 ls -lahR / | tee -a output.file
+
+ls -lr / > output | cat output
+
+
