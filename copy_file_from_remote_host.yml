@@ -1,0 +1,19 @@
+---
+- name: copy file
+  hosts: "{{ my_host }}"
+  ignore_errors: yes
+  tasks:
+  - name: convert sar file to txt
+    ansible.builtin.shell: "sar -A -f /var/log/sa/sa05 -s 17:09:09 -e 17:12:09 > /home/student/{{ inventory_hostname }}-sar05.txt"
+
+  - name: change file owner and group
+    file:
+      dest: /home/student/{{ inventory_hostname }}-sar05.txt
+      owner: student
+      group: student
+
+  - name: copy file from remote host
+    fetch:
+      src: /home/student/{{ inventory_hostname }}-sar05.txt
+      dest: /home/student/ansible/files/
+      flat: yes
