@@ -1,0 +1,41 @@
+Adding/Increasing disk space of a Linux VM by CLI without rebooting
+
+
+
+
+1. First add a new disk to your virtual machine within you virtualization environment.
+2. Get a list of your current disk/partition table.You can compare this output after adding the new disk.
+	#fdisk -l
+3. Re-scan the SCSI bus for the disk changes.
+	#echo “- – -” > /sys/class/scsi_host/host0/scan
+	#echo “- – -” > /sys/class/scsi_host/host1/scan
+	#echo “- – -” > /sys/class/scsi_host/host2/scan
+	#echo “- – -” > /sys/class/scsi_host/host3/scan
+	#echo “- – -” > /sys/class/scsi_host/host4/scan
+4. #fdisk -l
+5. #echo 1 > /sys/block/sdX/device/rescan
+6. #fdisk /dev/sdX
+	Type n to create a new partition
+	Type p to select primary
+	1 , this is the first partition on this disk
+	Type w
+7. New partition now created, with PhysicalDevicePath
+	/dev/sdX1
+8. Initialize the new physical volume.
+	#partprobe
+	#pvcreate /dev/sdX1
+	Physical volume “/dev/sdX1” successfully created
+9. List existing physical volume group
+	#pvs
+10. Get VG names 
+	#vgs
+11. Extend the Volume Group to include the new physical volume
+	#vgextend vg_XXX /dev/sdX1
+12. Get LV path
+	#lvscan
+13. Extend the LogicalVolume with the available/remaining space.
+	#lvextend -l +100%FREE /dev/vg_XXX/lv_XXX
+14. Resize the File system
+	#resize2fs /dev/vg_XXX/lv_XXX
+15. Verify the results
+	#df -h
