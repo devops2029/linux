@@ -1,0 +1,56 @@
+sudo yum list installed
+sudo yum list installed | more
+
+sudo yum list --installed | grep nginx
+## OR ##
+yum list installed | grep nginx
+
+sudo yum list --extras
+
+sudo yum list --all
+
+sudo yum list --available
+
+sudo yum list --installed | wc -l
+sudo yum list --all | wc -l
+sudo yum list --available | wc -l
+
+sudo yum list --upgrades
+sudo yum list --upgrades | more
+sudo yum list --upgrades | grep -i kernel
+
+sudo rpm -qa
+sudo rpm -qa | more
+sudo rpm -qa | wc -l
+sudo rpm -qa | grep bash
+
+sudo yum install yum-utils ## centos 6.x/7.x ##
+sudo yum install dnf-utils ## centos 8.x ##
+
+sudo yum repoquery -a --installed
+
+sudo yum repoquery --queryformat '%{name}.%{arch} : %{reponame}' nginx
+
+
+sudo yum repoquery --whatprovides webserver
+
+sudo yum repoquery --whatprovides webserver --arch i686
+
+dnf repoquery --querytags
+
+repoquery -a --installed \
+--queryformat "%{name}-%{arch}-%{version} installed at '%{installtime}' from '%{reponame}'"
+
+rpm -qa --qf "%{NAME}\n" |\
+sort > /nas/installed-software-mm-dd-yyyy.log
+
+yum -y install $(cat /nas/installed-software-mm-dd-yyyy.log)
+
+sudo yum history
+
+sudo yum history info ID
+sudo yum history info 2
+
+
+
+
