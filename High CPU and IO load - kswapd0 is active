@@ -1,2 +1,22 @@
+
+free -h
+
 ps -eo pid,pcpu,comm --sort pcpu | tail -n1
 
+cat /proc/sys/vm/swappiness
+
+cat /proc/sys/vm/vfs_cache_pressure
+
+cat /sys/kernel/mm/transparent_hugepage/enabled
+
+echo vm.swappiness=0 | tee -a /etc/sysctl.conf
+
+echo 1 > /proc/sys/vm/drop_caches
+
+How To Test TCP Connection without NetCat
+How to
+echo -n > /dev/tcp/IP/PORT
+
+If nothing returned, the connection is established.
+
+If hang there, please terminate and the connection is unavailable.
