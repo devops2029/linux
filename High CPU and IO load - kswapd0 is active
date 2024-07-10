@@ -1,3 +1,4 @@
+vmstat -s | grep -E 'memory|swap'
 
 free -h
 
@@ -20,3 +21,8 @@ echo -n > /dev/tcp/IP/PORT
 If nothing returned, the connection is established.
 
 If hang there, please terminate and the connection is unavailable.
+
+
+Top
+Press f, press a to switch to MEM view, and press q
+
