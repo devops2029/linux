@@ -1,0 +1,39 @@
+
+
+
+#Create a local repo with Red Hat Enterprise Linux 8.6
+#To sync a specific minor release
+subscription-manager release --set=8.6 && rm -rf /var/cache/dnf
+
+reposync -n -p /localrepo/baseos --download-metadata --repo=rhel-8-for-x86_64-baseos-rpms
+reposync -n -p /localrepo/appstream --download-metadata --repo=rhel-8-for-x86_64-appstream-rpms
+reposync -n -p /localrepo/codeready --download-metadata --repo=codeready-builder-for-rhel-8-x86_64-rpms
+reposync -n -p /localrepo/ansible-2.9 --download-metadata --repo=ansible-2.9-for-rhel-8-x86_64-rpms
+
+subscription-manager release
+subscription-manager release --set=7.9
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-7-server-rpms
+
+
+
+#How do I delete old packages in local repository server?
+find <TARGET_DIR> -type f -name \*.rpm | grep -vf <(repomanage --new <TARGET_DIR>) | xargs -I % rm -v %
+
+
+subscription-manager list --available
+subscription-manager list --available --all
+subscription-manager attach --pool=2c949b85843469e80184610a368c570d   
+subscription-manager repos --list
+subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+subscription-manager repos --enable ansible-2.9-for-rhel-8-x86_64-rpms
+subscription-manager repos --enable 
+
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+#Example:
+codeready-builder-for-rhel-8-x86_64-rpms
+ansible-2.9-for-rhel-8-x86_64-rpms
+ansible-2.8-for-rhel-8-x86_64-rpms
+rhel-8-for-x86_64-baseos-rpms
+rhel-8-for-x86_64-appstream-rpms
+lvms-4.12-for-rhel-8-x86_64-rpms
