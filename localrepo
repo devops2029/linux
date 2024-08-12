@@ -1,4 +1,4 @@
-
+yum install yum-utils createrepo
 
 
 #Create a local repo with Red Hat Enterprise Linux 8.6
@@ -12,6 +12,11 @@ reposync -n -p /localrepo/ansible-2.9 --download-metadata --repo=ansible-2.9-for
 
 subscription-manager release
 subscription-manager release --set=7.9
+
+subscription-manager repos --enable rhel-7-server-optional-rpms
+subscription-manager repos --enable rhel-7-server-extras-rpms
+subscription-manager repos --list-enabled
+
 reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-7-server-rpms
 
 
