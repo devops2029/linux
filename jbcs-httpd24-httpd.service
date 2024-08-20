@@ -1,0 +1,5 @@
+systemctl enable jbcs-httpd24-httpd.service
+systemctl start jbcs-httpd24-httpd.service
+systemctl stop jbcs-httpd24-httpd.service
+
+
