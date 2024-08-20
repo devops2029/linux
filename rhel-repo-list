@@ -1,0 +1,16 @@
+subscription-manager repos --list-enabled
+subscription-manager repos --list >> software-collection.txt
+
+
+
+jb-coreservices-1-for-rhel-8-x86_64-rpms
+rhel-8-for-x86_64-baseos-rpms
+codeready-builder-for-rhel-8-x86_64-rpms
+rhel-8-for-x86_64-appstream-rpms
+
+subscription-manager repos --enable jb-coreservices-1-for-rhel-8-x86_64-rpms
+
+reposync -n -p /localrepo/coreservice --download-metadata --repo=jb-coreservices-1-for-rhel-8-x86_64-rpms
+
+
+
