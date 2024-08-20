@@ -12,5 +12,6 @@ subscription-manager repos --enable jb-coreservices-1-for-rhel-8-x86_64-rpms
 
 reposync -n -p /localrepo/coreservice --download-metadata --repo=jb-coreservices-1-for-rhel-8-x86_64-rpms
 
+reposync -n -p /localrepo/epel --download-metadata --repo=epel
 
 
