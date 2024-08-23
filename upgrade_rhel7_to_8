@@ -1,1 +1,58 @@
-upgrade_rhel7_to_8
+Prepare RHEL 7 host for upgrade
+Prepare your RHEL 7 host for upgrade by following these steps. In the terminal, run as root:
+
+Disable SELinux for the period of the upgrade.:
+
+setenforce 0
+Make sure that you are registered through subscription-manager:
+
+subscription-manager list --installed
+Make sure that you have the following repositories enabled:
+
+subscription-manager repos --enable rhel-7-server-rpms             // Enable the Base repository:
+subscription-manager repos --enable rhel-7-server-extras-rpms      // Enable the Extras repository where Leapp and its dependencies are available
+subscription-manager release --unset                               // Set the Red Hat Subscription Manager to use the latest RHEL 7 content
+(Optional) Make sure versionlock is cleared if you use yum-plugin-versionlock:
+
+yum versionlock clear
+Update all installed packages:
+
+yum update -y
+Restart the host:
+
+reboot
+Install Leapp:
+
+yum install -y leapp leapp-repository leapp-upgrade
+Perform the upgrade
+Run as root:
+
+The Leapp upgrade command:
+
+leapp upgrade --target <target_os_version>
+For available <target_os_version> values, see Red Hat: Upgrading from RHEL 7 to RHEL 8: Supported upgrade paths
+
+Once complete, reboot the system. Run as root:
+
+reboot
+
+Run the pre-upgrade report:
+sudo leapp preupgrade
+
+Start the upgrade process:
+sudo leapp upgrade
+
+2. Monitor the upgrade: The upgrade process may take some time, depending on your system and network speed. Monitor the process for any prompts or errors.
+
+3. Reboot after the upgrade:
+
+Once the upgrade process completes, reboot your system:
+sudo reboot
+
+. Verify the upgrade:
+
+After the system restarts, confirm that the upgrade to RHEL 8 was successful:
+cat /etc/redhat-release
+
+
+
