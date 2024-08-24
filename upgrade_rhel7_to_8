@@ -14,6 +14,9 @@ subscription-manager repos --enable rhel-7-server-extras-rpms      // Enable the
 subscription-manager release --unset                               // Set the Red Hat Subscription Manager to use the latest RHEL 7 content
 (Optional) Make sure versionlock is cleared if you use yum-plugin-versionlock:
 
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-7-server-extra-rpms
+
+
 yum versionlock clear
 Update all installed packages:
 
