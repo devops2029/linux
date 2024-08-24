@@ -44,6 +44,9 @@ sudo leapp preupgrade
 
 Start the upgrade process:
 sudo leapp upgrade
+leapp preupgrade --no-rhsm
+leapp upgrade --no-rhsm
+
 
 2. Monitor the upgrade: The upgrade process may take some time, depending on your system and network speed. Monitor the process for any prompts or errors.
 cat /var/log/leapp/leapp-report.txt
