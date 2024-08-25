@@ -50,7 +50,19 @@ yum groupinstall "Development Toolds"
 yum install epel-release createrepo
 createrepo --database .
 
+- Leapp preupgrade getting "Inhibitor: Detected loaded kernel drivers which have been removed in RHEL 8. Upgrade cannot proceed." : 
+https://access.redhat.com/solutions/6971716
+$ sudo modprobe -r floppy pata_acpi
+$ lsmod | grep floppy
+$ lsmod | grep pata_acpi
+$ lspci -nnvv
 
+- Leapp upgrade fail with error "Inhibitor: Detected loaded kernel drivers which have been removed in RHEL 8. Upgrade cannot proceed.": 
+https://access.redhat.com/solutions/5436131
+# cp /boot/initramfs-$(uname -r).img /boot/initramfs-$(uname -r).img.backup
+# dracut -N -f
+# shutdown
+# dracut -f --regenerate-all
 
 2. Monitor the upgrade: The upgrade process may take some time, depending on your system and network speed. Monitor the process for any prompts or errors.
 cat /var/log/leapp/leapp-report.txt
