@@ -64,6 +64,10 @@ https://access.redhat.com/solutions/5436131
 # shutdown
 # dracut -f --regenerate-all
 
+/etc/default/grub
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pata_acpi.disable=1"
+lsmod | grep pata_acpi
+
 2. Monitor the upgrade: The upgrade process may take some time, depending on your system and network speed. Monitor the process for any prompts or errors.
 cat /var/log/leapp/leapp-report.txt
 /var/log/leapp/leapp-report.json
