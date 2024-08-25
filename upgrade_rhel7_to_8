@@ -9,6 +9,7 @@ Make sure that you are registered through subscription-manager:
 subscription-manager list --installed
 Make sure that you have the following repositories enabled:
 
+subscription-manager repos --enable rhel-server-rhscl-7-rpms
 subscription-manager repos --enable rhel-7-server-rpms             // Enable the Base repository:
 subscription-manager repos --enable rhel-7-server-extras-rpms      // Enable the Extras repository where Leapp and its dependencies are available
 subscription-manager release --unset                               // Set the Red Hat Subscription Manager to use the latest RHEL 7 content
@@ -67,6 +68,17 @@ https://access.redhat.com/solutions/5436131
 /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash pata_acpi.disable=1"
 lsmod | grep pata_acpi
+
+
+find -L /etc/leapp/repos.d/ -name ".leapp" -type d | xargs dirname
+snactor repo find --path /etc/leapp/repos.d/
+# cd /etc/leapp/repos.d/system_upgrade/el7toel8
+# snactor new-actor MyNewActor
+New actor MyNewActor has been created at /usr/share/leapp-repository/repositories/system_upgrade/el7toel8/actors/mynewactor/actor.py
+# cd /usr/share/leapp-repository/repositories/system_upgrade/el7toel8/actors/mynewactor/
+# tree
+
+
 
 2. Monitor the upgrade: The upgrade process may take some time, depending on your system and network speed. Monitor the process for any prompts or errors.
 cat /var/log/leapp/leapp-report.txt
