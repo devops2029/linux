@@ -6,10 +6,19 @@ Disable SELinux for the period of the upgrade.:
 setenforce 0
 Make sure that you are registered through subscription-manager:
 
+mkdir -p /localrepo/rhscl
+
 subscription-manager list --installed
 Make sure that you have the following repositories enabled:
 
 subscription-manager repos --enable rhel-server-rhscl-7-rpms
+reposync -n -p /localrepo/rhscl --download-metadata --repo=rhel-server-rhscl-7-rpms
+
+subscription-manager repos --enable jb-coreservices-1-for-rhel-8-x86_64-rpms
+reposync -n -p /localrepo/coreservice --download-metadata --repo=jb-coreservices-1-for-rhel-8-x86_64-rpms
+
+reposync -n -p /localrepo/epel --download-metadata --repo=epel
+
 subscription-manager repos --enable rhel-7-server-rpms             // Enable the Base repository:
 subscription-manager repos --enable rhel-7-server-extras-rpms      // Enable the Extras repository where Leapp and its dependencies are available
 subscription-manager release --unset                               // Set the Red Hat Subscription Manager to use the latest RHEL 7 content
