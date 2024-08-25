@@ -1,6 +1,8 @@
 subscription-manager repos --list-enabled
 subscription-manager repos --list >> software-collection.txt
 
+subscription-manager repos --enable rhel-server-rhscl-7-rpms
+
 
 
 jb-coreservices-1-for-rhel-8-x86_64-rpms
