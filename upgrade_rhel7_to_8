@@ -1,6 +1,11 @@
 Prepare RHEL 7 host for upgrade
 Prepare your RHEL 7 host for upgrade by following these steps. In the terminal, run as root:
 
+yum remove kernel-devel
+yum -y remove kernel-devel-3.10.0-1160.el7
+leapp answer --section remove_pam_pkcs11_module_check.confirm=True
+
+
 Disable SELinux for the period of the upgrade.:
 
 setenforce 0
