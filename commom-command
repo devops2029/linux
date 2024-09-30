@@ -14,4 +14,11 @@ rhel-7-server-extras-rpms/x86_64
 
 subscription-manager repos --enable=rhel-7-server-extras-rpms
 subscription-manager repos --enable=rhel-7-server-eus-optional-rpms
+subscription-manager repos --enable=rhel-server-rhscl-7-rpms
+subscription-manager repos --enable=rhel-server-rhscl-7-eus-rpms
 
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-7-server-rpms
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-7-server-extras-rpms
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-7-server-eus-optional-rpms
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-server-rhscl-7-rpms
+reposync -n -p /localrepo/rhel79 --download-metadata --repo=rhel-server-rhscl-7-eus-rpms
