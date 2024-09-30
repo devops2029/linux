@@ -2,6 +2,12 @@ echo 'export HISTTIMEFORMAT="%d/%m/%y %T "' >> ~/.bash_profile
 source ~/.bash_profile
 export HISTTIMEFORMAT='%F %T'
 history
+
+#Delta rpms disabled because usr bin applydeltarpm not installed red hat
 sudo yum install deltarpm
+
+yum search deltarpm
+yum info deltarpm
+yum info deltarpm | grep -i 'version'
 
 
