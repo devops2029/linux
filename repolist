@@ -1,0 +1,11 @@
+rhel-server-rhscl-7-beta-debug-rpms/x86_64                                                 Red Hat Software Collections Beta Debug RPMs for Red Hat Enterprise Linux 7 Server                                            disabled
+rhel-server-rhscl-7-beta-rpms/x86_64                                                       Red Hat Software Collections Beta RPMs for Red Hat Enterprise Linux 7 Server                                                  disabled
+rhel-server-rhscl-7-beta-source-rpms/x86_64                                                Red Hat Software Collections Beta Source RPMs for Red Hat Enterprise Linux 7 Server                                           disabled
+rhel-server-rhscl-7-debug-rpms/7Server/x86_64                                              Red Hat Software Collections Debug RPMs for Red Hat Enterprise Linux 7 Server                                                 disabled
+rhel-server-rhscl-7-eus-debug-rpms/7Server/x86_64                                          Red Hat Software Collections Debug RPMs for Red Hat Enterprise Linux 7 RHEL 7 Server EUS                                      disabled
+rhel-server-rhscl-7-eus-rpms/7Server/x86_64                                                Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 RHEL 7 Server EUS                                            disabled
+rhel-server-rhscl-7-eus-source-rpms/7Server/x86_64                                         Red Hat Software Collections Source RPMs for Red Hat Enterprise Linux 7 RHEL 7 Server EUS                                     disabled
+rhel-server-rhscl-7-rpms/7Server/x86_64                                                    Red Hat Software Collections RPMs for Red Hat Enterprise Linux 7 Server                                                       disabled
+rhel-server-rhscl-7-source-rpms/7Server/x86_64                                             Red Hat Software Collections Source RPMs for Red Hat Enterprise Linux 7 Server         
+
+
