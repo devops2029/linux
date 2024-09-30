@@ -10,4 +10,6 @@ yum search deltarpm
 yum info deltarpm
 yum info deltarpm | grep -i 'version'
 
+rhel-7-server-extras-rpms/x86_64
 
+subscription-manager repos --enable=rhel-7-server-extras-rpms
