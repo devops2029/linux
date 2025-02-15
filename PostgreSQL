@@ -21,7 +21,7 @@ Make sure to replace 12 with the correct version if you are installing a differe
 
 4. Start and Enable PostgreSQL Service
 Start the PostgreSQL service and enable it to start automatically on boot:
-sudo systemctl status postgresql-12
+sudo systemctl enable --now postgresql-12
 
 5. Verify the Installation
 To verify that PostgreSQL is running, you can check the status:
@@ -58,6 +58,11 @@ Enter the new password and exit the shell by typing \q.
 
 Now you can log in as the postgres user:
 psql -U postgres
+vi /var/lib/pgsql/12/data/pg_hba.conf
+local   all             postgres                        md5
+
+systemctl restart postgresql-12.service
+
 
 Conclusion:
 You have successfully installed PostgreSQL and set it up on your RHEL 7.9 system. You can now begin creating databases, managing users, and more.
