@@ -100,14 +100,13 @@ SELECT * FROM employees;
 
 ----------------------------------------------------------------------------------------------
 
-systemctl enable jbcs-httpd24-httpd.service
+systemctl enable --now jbcs-httpd24-httpd.service
+systemctl start jbcs-httpd24-httpd.service
+systemctl startus jbcs-httpd24-httpd.service
 
 ls -l /sys/fs/cgroup/systemd/system.slice/jbcs-httpd24-httpd.service
 ls -l /etc/systemd/system/multi-user.target.wants/jbcs-httpd24-httpd.service
 ls -l /usr/lib/systemd/system/jbcs-httpd24-httpd.service
-
-
-
 
 vi /sys/fs/cgroup/systemd/system.slice/jbcs-httpd24-httpd.service
 vi /etc/systemd/system/multi-user.target.wants/jbcs-httpd24-httpd.service
