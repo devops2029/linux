@@ -1,0 +1,85 @@
+1. Enable the PostgreSQL Repository
+By default, Red Hat doesn't include PostgreSQL in the main repositories, so you'll need to enable the repository first. The PostgreSQL packages are available in the PostgreSQL repository provided by Red Hat.
+
+First, you need to install the PostgreSQL repository from the Red Hat Software Collections (SCL) or PostgreSQL's official repository.
+
+To enable the PostgreSQL repository:
+sudo yum install -y https://download.postgresql.org/pub/repos/yum/reporpms/EL-7-x86_64/pgdg-redhat-repo-latest.noarch.rpm
+This will add the PostgreSQL repository to your system.
+
+2. Install PostgreSQL
+Once the repository is enabled, you can install PostgreSQL. For RHEL 7.9, you can choose the specific version of PostgreSQL you want to install. Common versions are 9.6, 12, and 13.
+
+To install PostgreSQL 12 (as an example):
+sudo yum install -y postgresql12 postgresql12-server
+Alternatively, if you want to install another version (for example, PostgreSQL 13), replace postgresql12 with postgresql13.
+
+3. Initialize PostgreSQL Database
+After installation, you need to initialize the database:
+sudo /usr/pgsql-12/bin/postgresql-12-setup initdb
+Make sure to replace 12 with the correct version if you are installing a different version.
+
+4. Start and Enable PostgreSQL Service
+Start the PostgreSQL service and enable it to start automatically on boot:
+sudo systemctl status postgresql-12
+
+5. Verify the Installation
+To verify that PostgreSQL is running, you can check the status:
+sudo systemctl status postgresql-12
+
+6. Configure PostgreSQL (Optional)
+If you need to configure PostgreSQL for remote access, you will need to modify the following configuration files:
+
+pg_hba.conf: Configure the client authentication settings.
+postgresql.conf: Configure the listening IP addresses and other settings.
+For example, to allow PostgreSQL to listen on all IP addresses, edit the postgresql.conf file:
+sudo vi /var/lib/pgsql/12/data/postgresql.conf
+
+Find the line starting with #listen_addresses = and change it to:
+listen_addresses = '*'
+
+Then, modify pg_hba.conf to allow connections from your network:
+sudo vi /var/lib/pgsql/12/data/pg_hba.conf
+
+Add a line like the following for local and remote access:
+host    all             all             0.0.0.0/0               md5
+
+Finally, restart PostgreSQL to apply the changes:
+sudo systemctl restart postgresql-12
+
+7. Set PostgreSQL Password for postgres User
+By default, PostgreSQL creates a postgres user. You should set a password for the postgres user:
+sudo -u postgres psql
+
+In the PostgreSQL shell, run:
+\password postgres
+
+Enter the new password and exit the shell by typing \q.
+
+Now you can log in as the postgres user:
+psql -U postgres
+
+Conclusion:
+You have successfully installed PostgreSQL and set it up on your RHEL 7.9 system. You can now begin creating databases, managing users, and more.
+
+Let me know if you need further help!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
