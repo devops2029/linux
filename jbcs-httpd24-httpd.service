@@ -2,12 +2,24 @@ subscription-manager repos --list-enabled
 subscription-manager repos --enable=rhel-7-server-optional-rpms
 subscription-manager repos --enable=rhel-7-server-extras-rpms
 subscription-manager repos --enable=rhel-server-rhscl-7-rpms
+
+RHEL8.x
+--------
 yum install jbcs-httpd24-httpd
 systemctl enable jbcs-httpd24-httpd.service
 systemctl start jbcs-httpd24-httpd.service
 systemctl status jbcs-httpd24-httpd.service
 systemctl stop jbcs-httpd24-httpd.service
 systemctl start jbcs-httpd24-httpd.service
+
+RHEL7.9
+--------
+yum install httpd24-httpd
+systemctl enable --now   httpd24-httpd.service
+systemctl status httpd24-httpd.service
+systemctl stop jbcs-httpd24-httpd.service
+systemctl start jbcs-httpd24-httpd.service
+systemctl status httpd24-httpd.service
 
 # subscription-manager repos --list-enabled
 +----------------------------------------------------------+
