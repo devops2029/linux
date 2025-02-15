@@ -1,1 +1,15 @@
 
+Upgrading from RHEL 7.9 to RHEL 8.x using the Leapp tool is a structured process that allows you to perform an in-place upgrade to the next major version of Red Hat Enterprise Linux. The Leapp utility automates most of the process, but you must ensure that your system is ready for the upgrade and that you follow the steps carefully.
+
+Leapp Upgrade Process from RHEL 7.9 to RHEL 8.x
+Here’s a step-by-step guide to performing the upgrade:
+
+1. Preparation
+Before starting the upgrade, you should perform the following tasks:
+
+Backup Your System
+Ensure you have a full backup of your system before proceeding with the upgrade, especially for important configurations, files, and databases.
+
+Update All Installed Packages
+It is important that your system is fully updated before starting the upgrade process:
+
