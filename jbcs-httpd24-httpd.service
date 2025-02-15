@@ -7,8 +7,24 @@ systemctl start jbcs-httpd24-httpd.service
 systemctl status jbcs-httpd24-httpd.service
 systemctl stop jbcs-httpd24-httpd.service
 systemctl start jbcs-httpd24-httpd.service
-subscription-manager repos --list-enabled
 
+# subscription-manager repos --list-enabled
++----------------------------------------------------------+
+    Available Repositories in /etc/yum.repos.d/redhat.repo
++----------------------------------------------------------+
+Repo ID:   rhel-7-server-extras-rpms
+Repo Name: Red Hat Enterprise Linux 7 Server - Extras (RPMs)
+Repo URL:  https://cdn.redhat.com/content/dist/rhel/server/7/7Server/$basearch/extras/os
+Enabled:   1
 
+Repo ID:   rhel-7-server-optional-rpms
+Repo Name: Red Hat Enterprise Linux 7 Server - Optional (RPMs)
+Repo URL:  https://cdn.redhat.com/content/dist/rhel/server/7/$releasever/$basearch/optional/os
+Enabled:   1
+
+Repo ID:   rhel-7-server-rpms
+Repo Name: Red Hat Enterprise Linux 7 Server (RPMs)
+Repo URL:  https://cdn.redhat.com/content/dist/rhel/server/7/$releasever/$basearch/os
+Enabled:   1
 
 
