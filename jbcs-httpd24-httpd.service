@@ -42,6 +42,9 @@ Enabled:   1
 
 
 vi /usr/lib/systemd/system/jbcs-httpd24-httpd.service
+/opt/rh/jbcs-httpd24/root/usr/sbin/httpd -v
+
+
 
 [Unit]
 Description=The Apache HTTP Server
