@@ -65,6 +65,37 @@ You have successfully installed PostgreSQL and set it up on your RHEL 7.9 system
 Let me know if you need further help!
 
 
+Complete Example
+Here’s the entire process in one go:
+
+-- Step 1: Create the database
+CREATE DATABASE mydb;
+
+-- Step 2: Connect to the new database
+\c mydb
+
+-- Step 3: Create the employees table
+CREATE TABLE employees (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100),
+    age INT,
+    department VARCHAR(50)
+);
+
+-- Step 4: Insert data into the table
+INSERT INTO employees (name, age, department) 
+VALUES 
+    ('John Doe', 30, 'HR'),
+    ('Alice Smith', 25, 'IT'),
+    ('Bob Johnson', 35, 'Finance'),
+    ('Charlie Brown', 28, 'Marketing');
+
+-- Step 5: Verify the data
+SELECT * FROM employees;
+
+
+
+
 
 
 
